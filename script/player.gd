@@ -2,12 +2,25 @@ extends CharacterBody2D
 
 const SPEED = 100
 var CURRENT_DIR = "none"
-
+var ENEMY_IN_ATTACK_RANGE = false
+var ENEMY_ATTACK_COOLDOWN = true
+var HEALTH = 100
+var PLAYER_ALIVE = true
+var ATTACK_IP = false
+	
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 
 func _physics_process(delta: float):
 	player_movement(delta)
+	enemy_attack()
+	attack()
+	
+	if HEALTH <= 0:
+		PLAYER_ALIVE = false
+		HEALTH = 0
+		print("player has been killed")
+		self.queue_free()
 
 func player_movement(_delta):
 	
@@ -47,23 +60,75 @@ func play_animation(movement):
 		if movement == 1:
 			animation.play("side_walk")
 		elif movement == 0:
-			animation.play("side_idle")
+			if ATTACK_IP == false:
+				animation.play("side_idle")
 	if dir == "left":
 		animation.flip_h = true
 		if movement == 1:
 			animation.play("side_walk")
 		elif movement == 0:
-			animation.play("side_idle")
+			if ATTACK_IP == false:
+				animation.play("side_idle")
 	if dir == "down":
 		animation.flip_h = true
 		if movement == 1:
 			animation.play("front_walk")
 		elif movement == 0:
-			animation.play("front_idle")
+			if ATTACK_IP == false:
+				animation.play("front_idle")
 	if dir == "up":
 		animation.flip_h = true
 		if movement == 1:
 			animation.play("back_walk")
 		elif movement == 0:
-			animation.play("back_idle")
+			if ATTACK_IP == false:
+				animation.play("back_idle")
+			
+func player():
+	pass
+
+func _on_player_hitbox_body_entered(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		ENEMY_IN_ATTACK_RANGE = true
 	
+func _on_player_hitbox_body_exited(body: Node2D) -> void:
+	if body.has_method("enemy"):
+		ENEMY_IN_ATTACK_RANGE = false
+		
+func enemy_attack():
+	if ENEMY_IN_ATTACK_RANGE and ENEMY_ATTACK_COOLDOWN == true :
+		HEALTH = HEALTH - 20
+		ENEMY_ATTACK_COOLDOWN = false
+		$attack_cooldown.start()
+		print(HEALTH)
+		
+
+func _on_attack_cooldown_timeout() -> void:
+	ENEMY_ATTACK_COOLDOWN = true
+	
+func attack():
+	var dir = CURRENT_DIR
+	
+	if Input.is_action_just_pressed("attack"):
+		World.PLAYER_CURRENT_ATTACK = true
+		ATTACK_IP = true
+		if dir == "right":
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("side_attack")
+			$deal_attack_timer.start()
+		if dir == "left":
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("side_attack")
+			$deal_attack_timer.start()
+		if dir == "down":
+			$AnimatedSprite2D.play("front_attack")
+			$deal_attack_timer.start()
+		if dir == "up":
+			$AnimatedSprite2D.play("back_attack")
+			$deal_attack_timer.start()
+			
+			
+func _on_deal_attack_timer_timeout() -> void:
+	$deal_attack_timer.stop()
+	World.PLAYER_CURRENT_ATTACK = false
+	ATTACK_IP = false	
