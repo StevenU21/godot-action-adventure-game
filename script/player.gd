@@ -4,7 +4,7 @@ const SPEED = 100
 var CURRENT_DIR = "none"
 var ENEMY_IN_ATTACK_RANGE = false
 var ENEMY_ATTACK_COOLDOWN = true
-var HEALTH = 100
+var HEALTH = 200
 var PLAYER_ALIVE = true
 var ATTACK_IP = false
 	

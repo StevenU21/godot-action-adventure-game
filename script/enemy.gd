@@ -51,6 +51,5 @@ func deal_with_damage():
 				if HEALTH <= 0:
 					self.queue_free()
 				
-	
 func _on_take_damage_cooldown_timeout() -> void:
 	CAN_TAKE_DAMAGE = true
