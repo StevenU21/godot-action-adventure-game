@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cyxcbro5qcf15"]
+[gd_scene load_steps=21 format=4 uid="uid://cyxcbro5qcf15"]
 
 [ext_resource type="Texture2D" uid="uid://bxqjlmq4crwj7" path="res://art/tilesets/grass.png" id="1_e10jm"]
 [ext_resource type="Script" uid="uid://rrs1o6dq7iom" path="res://script/cliff_side.gd" id="1_ygqrx"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://mtlwo81ftccl" path="res://art/objects/objects.png" id="5_ocn37"]
 [ext_resource type="Texture2D" uid="uid://d1drbxtur6n54" path="res://art/objects/chest_01.png" id="6_ocn37"]
 [ext_resource type="PackedScene" uid="uid://clsn745svmq0l" path="res://scenes/player.tscn" id="7_0riok"]
+[ext_resource type="AudioStream" uid="uid://d33wesh7a7gqh" path="res://audio/background/Across-Seas-And-Lands-Asher-Fule.mp3" id="9_71q3n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocn37"]
 texture = ExtResource("1_e10jm")
@@ -428,6 +429,10 @@ polygon = PackedVector2Array(-1, 0, 47, 44, 338, 45, 339, 143, 292, 147, 290, 20
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cliff_side_exit"]
 position = Vector2(254.5, 209.5)
 shape = SubResource("RectangleShape2D_0riok")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_71q3n")
+autoplay = true
 
 [connection signal="body_entered" from="cliff_side_exit" to="." method="_on_cliff_side_exit_body_entered"]
 [connection signal="body_exited" from="cliff_side_exit" to="." method="_on_cliff_side_exit_body_exited"]

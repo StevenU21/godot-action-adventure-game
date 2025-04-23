@@ -4,18 +4,19 @@ const SPEED = 100
 var CURRENT_DIR = "down"
 var ENEMY_IN_ATTACK_RANGE = false
 var ENEMY_ATTACK_COOLDOWN = true
-var HEALTH = 200
+var HEALTH = 100
 var PLAYER_ALIVE = true
 var ATTACK_IP = false
 	
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	current_camera()
-	player_movement(delta)
+	player_movement(_delta)
 	enemy_attack()
 	attack()
+	update_health_bar()
 	
 	if HEALTH <= 0:
 		PLAYER_ALIVE = false
@@ -98,7 +99,7 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 		
 func enemy_attack():
 	if ENEMY_IN_ATTACK_RANGE and ENEMY_ATTACK_COOLDOWN == true :
-		HEALTH = HEALTH - 20
+		HEALTH = HEALTH - 10
 		ENEMY_ATTACK_COOLDOWN = false
 		$attack_cooldown.start()
 		print(HEALTH)
@@ -141,3 +142,20 @@ func current_camera():
 	elif General.CURRENT_SCENE == "cliff_side":
 		$world_camera.enabled = false
 		$cliff_side_camera.enabled = true
+
+func update_health_bar():
+	var health_bar = $health_bar
+	health_bar.value = HEALTH
+	
+	if HEALTH >= 100:
+		health_bar.visible = false
+	else:
+		health_bar.visible = true	
+
+func _on_regin_timer_timeout() -> void:
+	if HEALTH < 100:
+		HEALTH = HEALTH + 20
+		if HEALTH > 100:
+			HEALTH = 100
+	if HEALTH <= 0:
+		HEALTH = 0

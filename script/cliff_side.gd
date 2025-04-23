@@ -1,6 +1,6 @@
 extends Node2D
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	change_scenes()
 
 func _on_cliff_side_exit_body_entered(body: Node2D) -> void:
