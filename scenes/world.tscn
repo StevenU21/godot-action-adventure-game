@@ -403,8 +403,5 @@ stream = ExtResource("10_w7kh3")
 autoplay = true
 parameters/looping = false
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(243, -24)
-
 [connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]
