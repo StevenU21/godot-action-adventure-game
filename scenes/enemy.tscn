@@ -127,7 +127,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
-radius = 55.0364
+radius = 43.0116
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ra3w"]
 radius = 5.0
@@ -145,7 +145,6 @@ frame_progress = 0.470405
 offset = Vector2(0, -6)
 
 [node name="detection_area" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 2
 
@@ -153,12 +152,10 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_md0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_4ra3w")
 
 [node name="enemy_hitbox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
 position = Vector2(0, -2)

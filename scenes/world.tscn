@@ -403,5 +403,20 @@ stream = ExtResource("10_w7kh3")
 autoplay = true
 parameters/looping = false
 
+[node name="enemy2" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(294, 230)
+
+[node name="enemy3" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(372, 75)
+
+[node name="enemy4" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(-6, 184)
+
+[node name="enemy5" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(94, 237)
+
+[node name="enemy6" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(75, 60)
+
 [connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]

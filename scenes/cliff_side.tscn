@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cyxcbro5qcf15"]
+[gd_scene load_steps=22 format=4 uid="uid://cyxcbro5qcf15"]
 
 [ext_resource type="Texture2D" uid="uid://bxqjlmq4crwj7" path="res://art/tilesets/grass.png" id="1_e10jm"]
 [ext_resource type="Script" uid="uid://rrs1o6dq7iom" path="res://script/cliff_side.gd" id="1_ygqrx"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d1drbxtur6n54" path="res://art/objects/chest_01.png" id="6_ocn37"]
 [ext_resource type="PackedScene" uid="uid://clsn745svmq0l" path="res://scenes/player.tscn" id="7_0riok"]
 [ext_resource type="AudioStream" uid="uid://d33wesh7a7gqh" path="res://audio/background/Across-Seas-And-Lands-Asher-Fule.mp3" id="9_71q3n"]
+[ext_resource type="PackedScene" uid="uid://dn4twbhrm62vf" path="res://scenes/enemy.tscn" id="10_axhr3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocn37"]
 texture = ExtResource("1_e10jm")
@@ -435,8 +436,17 @@ shape = SubResource("RectangleShape2D_0riok")
 stream = ExtResource("9_71q3n")
 autoplay = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(165, -64)
+[node name="enemy" parent="." instance=ExtResource("10_axhr3")]
+position = Vector2(-12, 109)
+
+[node name="enemy2" parent="." instance=ExtResource("10_axhr3")]
+position = Vector2(179, 75)
+
+[node name="enemy3" parent="." instance=ExtResource("10_axhr3")]
+position = Vector2(296, 120)
+
+[node name="enemy4" parent="." instance=ExtResource("10_axhr3")]
+position = Vector2(300, 4)
 
 [connection signal="body_entered" from="cliff_side_exit" to="." method="_on_cliff_side_exit_body_entered"]
 [connection signal="body_exited" from="cliff_side_exit" to="." method="_on_cliff_side_exit_body_exited"]
