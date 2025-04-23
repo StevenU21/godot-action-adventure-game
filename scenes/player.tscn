@@ -427,7 +427,7 @@ script = ExtResource("1_g2els")
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_lxlsd")
 animation = &"side_walk"
-frame_progress = 0.460684
+frame_progress = 0.0263949
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -449,10 +449,10 @@ shape = SubResource("CircleShape2D_qhqgy")
 wait_time = 0.5
 
 [node name="world_camera" type="Camera2D" parent="."]
-position = Vector2(104, -9)
+position = Vector2(117, 74)
 zoom = Vector2(4, 4)
 limit_left = 0
-limit_top = 0
+limit_top = 2
 limit_right = 417
 limit_bottom = 194
 position_smoothing_enabled = true
