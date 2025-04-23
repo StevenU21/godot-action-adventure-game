@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cgjqviyvxrbh2"]
+[gd_scene load_steps=17 format=4 uid="uid://cgjqviyvxrbh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5168by4deaet" path="res://art/tilesets/plains.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://cl712oss8isjl" path="res://script/world.gd" id="1_7r4gi"]
@@ -345,22 +345,12 @@ sources/2 = SubResource("TileSetAtlasSource_e3hyu")
 sources/3 = SubResource("TileSetAtlasSource_q5onr")
 sources/5 = SubResource("TileSetAtlasSource_jhx03")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o8fc1"]
-texture = ExtResource("6_i7141")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-3:4/0 = 0
-2:4/0 = 0
-1:4/0 = 0
-0:4/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_xo05s"]
-sources/0 = SubResource("TileSetAtlasSource_o8fc1")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r4gi"]
+size = Vector2(70, 19)
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(1, 1)
 script = ExtResource("1_7r4gi")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -383,15 +373,26 @@ tile_set = ExtResource("6_4mrxx")
 y_sort_enabled = true
 use_parent_material = true
 position = Vector2(2, 7)
-tile_map_data = PackedByteArray("AAAZAAAAAgAAAAAAAAAWAAEAAgAKAAcAAAAGAAQAAgAAAAUAAAANAAgAAgAAAAUAAAASAAQAAgAAAAUAAAAJAAMAAgAGAAcAAAAWAAUAAgAFAAAAAAAVAAsAAgAKAAcAAAAOAAIAAgAKAAcAAAAIAAsAAgAKAAcAAAAYAAkAAgAIAAYAAAABAAcAAgAAAAEAAAAEAAoAAgAAAAEAAAAQAAYAAgAAAAEAAAAFAAoAAgAFAAAAAAAAAAYAAgAFAAAAAAAUAAAAAgAGAAcAAAALAAAAAgAAAAUAAAACAAEAAgAGAAcAAAAGAAEAAgAAAAAAAAAFAAEAAgAAAAEAAAAHAAEAAgAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAAZAAAAAgAAAAAAAAAWAAEAAgAKAAcAAAAGAAQAAgAAAAUAAAANAAgAAgAAAAUAAAASAAQAAgAAAAUAAAAJAAMAAgAGAAcAAAAWAAUAAgAFAAAAAAAVAAsAAgAKAAcAAAAOAAIAAgAKAAcAAAAIAAsAAgAKAAcAAAAYAAkAAgAIAAYAAAABAAcAAgAAAAEAAAAEAAoAAgAAAAEAAAAQAAYAAgAAAAEAAAAFAAoAAgAFAAAAAAAAAAYAAgAFAAAAAAAUAAAAAgAGAAcAAAACAAEAAgAGAAcAAAAGAAEAAgAAAAAAAAAFAAEAAgAAAAEAAAAHAAEAAgAAAAEAAAANAP//AgAIAAYAAAARAP//AgAIAAYAAAAKAAAAAgAAAAUAAAA=")
 tile_set = ExtResource("6_4mrxx")
 
-[node name="grass" type="TileMapLayer" parent="TileMapLayer"]
-tile_map_data = PackedByteArray("AAANAAsAAAADAAAAAAAOAAsAAAABAAAAAAAMAAsAAAABAAAAAAALAAoAAAAAAAAAAAALAAsAAAACAAAAAAABAAoAAAADAAAAAAABAAkAAAACAAAAAAACAAoAAAACAAAAAAABAAsAAAACAAAAAAAQAAIAAAADAAAAAAARAAIAAAABAAAAAAAQAAEAAAABAAAAAAAPAAEAAAABAAAAAAAYAAEAAAADAAAAAAAXAAoAAAABAAAAAAAWAAoAAAADAAAAAAAXAAsAAAACAAAAAAAJAAEAAAADAAAAAAAJAAIAAAABAAAAAAAIAAIAAAABAAAAAAAQAAUAAAADAAAAAAAPAAUAAAADAAAAAAAXAAQAAAADAAAAAAAWAAQAAAACAAAAAAAYAAQAAAACAAAAAAA=")
-tile_set = SubResource("TileSet_xo05s")
-
 [node name="player" parent="." instance=ExtResource("4_k0juu")]
-position = Vector2(7, 21)
+position = Vector2(36, 88)
 
 [node name="enemy" parent="." instance=ExtResource("8_4mrxx")]
-position = Vector2(177, 116)
+position = Vector2(209, 75)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(2, 7)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 39, 0, 221, -1, 220, -20, 291, -19, 291, 2, 289, 21, 293, 30, 304, 31, 307, 48, 362, 50, 415, 47, 415, 82, 435, 81, 434, 126, 414, 125, 415, 168, 416, 190, 224, 191, 99, 193, -1, 191, 0, 77, -12, 76, -11, 4, 0, 4, -7, -5, -48, -5, -40, 107, -26, 221, 73, 217, 153, 212, 244, 214, 457, 215, 454, 92, 448, -18, 351, -28, 227, -33, 103, -26, -3, -13)
+
+[node name="cliffside_transition_point" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cliffside_transition_point"]
+position = Vector2(258, -2.5)
+shape = SubResource("RectangleShape2D_7r4gi")
+
+[connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
+[connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]

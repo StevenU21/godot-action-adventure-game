@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 100
-var CURRENT_DIR = "none"
+var CURRENT_DIR = "down"
 var ENEMY_IN_ATTACK_RANGE = false
 var ENEMY_ATTACK_COOLDOWN = true
 var HEALTH = 200
@@ -12,6 +12,7 @@ func _ready():
 	$AnimatedSprite2D.play("front_idle")
 
 func _physics_process(delta: float):
+	current_camera()
 	player_movement(delta)
 	enemy_attack()
 	attack()
@@ -110,7 +111,7 @@ func attack():
 	var dir = CURRENT_DIR
 	
 	if Input.is_action_just_pressed("attack"):
-		World.PLAYER_CURRENT_ATTACK = true
+		General.PLAYER_CURRENT_ATTACK = true
 		ATTACK_IP = true
 		if dir == "right":
 			$AnimatedSprite2D.flip_h = false
@@ -130,5 +131,13 @@ func attack():
 			
 func _on_deal_attack_timer_timeout() -> void:
 	$deal_attack_timer.stop()
-	World.PLAYER_CURRENT_ATTACK = false
+	General.PLAYER_CURRENT_ATTACK = false
 	ATTACK_IP = false	
+	
+func current_camera():
+	if General.CURRENT_SCENE == "world":
+		$world_camera.enabled = true
+		$cliff_side_camera.enabled = false
+	elif General.CURRENT_SCENE == "cliff_side":
+		$world_camera.enabled = false
+		$cliff_side_camera.enabled = true

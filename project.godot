@@ -17,11 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-World="*res://script/world.gd"
-
-[display]
-
-window/stretch/scale=2.65
+General="*res://script/general.gd"
 
 [input]
 
