@@ -40,22 +40,22 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func player_movement(_delta):
 	
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("move_right"):
 		CURRENT_DIR = "right"
 		play_animation(1)
 		velocity.x = SPEED
 		velocity.y = 0
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("move_left"):
 		CURRENT_DIR = "left"
 		play_animation(1)
 		velocity.x = -SPEED
 		velocity.y = 0
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("move_down"):
 		CURRENT_DIR = "down"
 		play_animation(1)
 		velocity.y = SPEED
 		velocity.x = 0
-	elif Input.is_action_pressed("ui_up"):
+	elif Input.is_action_pressed("move_up"):
 		CURRENT_DIR = "up"
 		play_animation(1)
 		velocity.y = -SPEED
