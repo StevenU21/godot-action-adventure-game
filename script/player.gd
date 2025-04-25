@@ -10,8 +10,12 @@ var ATTACK_IP = false
 	
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
+	$AnimatedSprite2D.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 
 func _physics_process(_delta: float):
+	if not PLAYER_ALIVE:
+		return
+		
 	current_camera()
 	player_movement(_delta)
 	enemy_attack()
@@ -19,10 +23,20 @@ func _physics_process(_delta: float):
 	update_health_bar()
 	
 	if HEALTH <= 0:
-		PLAYER_ALIVE = false
 		HEALTH = 0
-		print("player has been killed")
-		self.queue_free()
+		PLAYER_ALIVE = false
+		die()
+		return
+		
+func die():
+	PLAYER_ALIVE = false
+	set_physics_process(false)
+	velocity = Vector2.ZERO
+	$AnimatedSprite2D.play("death")
+	
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == "death":
+		get_tree().reload_current_scene()
 
 func player_movement(_delta):
 	
@@ -99,11 +113,10 @@ func _on_player_hitbox_body_exited(body: Node2D) -> void:
 		
 func enemy_attack():
 	if ENEMY_IN_ATTACK_RANGE and ENEMY_ATTACK_COOLDOWN == true :
-		HEALTH = HEALTH - 10
+		HEALTH = HEALTH - 20
 		ENEMY_ATTACK_COOLDOWN = false
 		$attack_cooldown.start()
 		print(HEALTH)
-		
 
 func _on_attack_cooldown_timeout() -> void:
 	ENEMY_ATTACK_COOLDOWN = true
@@ -153,9 +166,10 @@ func update_health_bar():
 		health_bar.visible = true	
 
 func _on_regin_timer_timeout() -> void:
-	if HEALTH < 100:
+	if HEALTH < 100 and HEALTH > 0:
 		HEALTH = HEALTH + 20
 		if HEALTH > 100:
 			HEALTH = 100
 	if HEALTH <= 0:
+		PLAYER_ALIVE = false
 		HEALTH = 0

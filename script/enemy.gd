@@ -52,7 +52,7 @@ func deal_with_damage():
 		return
 
 	if PLAYER_IN_ATTACK_ZONE and General.PLAYER_CURRENT_ATTACK and CAN_TAKE_DAMAGE:
-		HEALTH -= 25
+		HEALTH -= 33.33
 		CAN_TAKE_DAMAGE = false
 		$take_damage_cooldown.start()
 		print("slime health =", HEALTH)
