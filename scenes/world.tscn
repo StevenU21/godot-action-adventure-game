@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cgjqviyvxrbh2"]
+[gd_scene load_steps=21 format=4 uid="uid://cgjqviyvxrbh2"]
 
 [ext_resource type="Texture2D" uid="uid://b5168by4deaet" path="res://art/tilesets/plains.png" id="1_4wyf3"]
 [ext_resource type="Script" uid="uid://cl712oss8isjl" path="res://script/world.gd" id="1_7r4gi"]
@@ -349,6 +349,18 @@ sources/5 = SubResource("TileSetAtlasSource_jhx03")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7r4gi"]
 size = Vector2(76, 35.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7kh3"]
+size = Vector2(25, 65)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3hyu"]
+size = Vector2(24, 46)
+
+[sub_resource type="GDScript" id="GDScript_w7kh3"]
+script/source = "extends CanvasLayer
+
+@onready var label = $Panel/Label
+"
+
 [node name="world" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(1, 1)
@@ -374,7 +386,7 @@ tile_set = ExtResource("6_4mrxx")
 y_sort_enabled = true
 use_parent_material = true
 position = Vector2(2, 7)
-tile_map_data = PackedByteArray("AAAZAAAAAgAAAAAAAAAWAAEAAgAKAAcAAAAGAAQAAgAAAAUAAAANAAgAAgAAAAUAAAASAAQAAgAAAAUAAAAJAAMAAgAGAAcAAAAWAAUAAgAFAAAAAAAVAAsAAgAKAAcAAAAOAAIAAgAKAAcAAAAIAAsAAgAKAAcAAAAYAAkAAgAIAAYAAAAEAAoAAgAAAAEAAAAQAAYAAgAAAAEAAAAFAAoAAgAFAAAAAAAUAAAAAgAGAAcAAAACAAEAAgAGAAcAAAAGAAEAAgAAAAAAAAAFAAEAAgAAAAEAAAAHAAEAAgAAAAEAAAANAP//AgAIAAYAAAARAP//AgAIAAYAAAAAAA0ABAADAAIAAAD//w0ABAACAAMAAAD+/w0ABAACAAMAAAD9/w0ABAACAAMAAAD9/wYAAgAAAAUAAAD+/wYABAACAAMAAAD//wYABAACAAMAAAAAAAYABAADAAAAAAAAAAcABAAAAAEAAAAAAAgABAAAAAEAAAAAAAkABAAAAAEAAAAAAAoABAAAAAEAAAAAAAsABAAAAAEAAAAAAAwABAAAAAEAAAD8/wYABAACAAMAAAD8/w0ABAACAAMAAAALAAwAAgAAAAUAAAADAAwAAgAAAAUAAAD+////AgAAAAUAAAAGAP//AgAAAAUAAAAaAAgAAgAFAAAAAAAMAAwAAgAAAAAAAAAKAAAAAgAAAAUAAAAHAA0AAgAGAAcAAAAUAA0AAgAGAAcAAAAYAAwAAgAAAAUAAAAWAA0AAgAAAAEAAAAOAAwAAgAAAAEAAAAJAA0AAgAAAAEAAAAFAAwAAgAAAAEAAAAWAAoAAgAAAAEAAAD9/wkABQAAAAAAAAD+/wkAAgAFAAAAAAD8/wkAAgAFAAAAAAD9/wsAAgAAAAUAAAD//wcAAgAKAAcAAAD//wwAAgAKAAcAAAAJAAkAAgAGAAcAAAAQAAsAAgAGAAcAAAA=")
+tile_map_data = PackedByteArray("AAAZAAAAAgAAAAAAAAAWAAEAAgAKAAcAAAAGAAQAAgAAAAUAAAANAAgAAgAAAAUAAAASAAQAAgAAAAUAAAAJAAMAAgAGAAcAAAAWAAUAAgAFAAAAAAAVAAsAAgAKAAcAAAAOAAIAAgAKAAcAAAAIAAsAAgAKAAcAAAAYAAkAAgAIAAYAAAAQAAYAAgAAAAEAAAAUAAAAAgAGAAcAAAACAAEAAgAGAAcAAAAGAAEAAgAAAAAAAAAFAAEAAgAAAAEAAAAHAAEAAgAAAAEAAAANAP//AgAIAAYAAAARAP//AgAIAAYAAAAAAA0ABAADAAIAAAD//w0ABAACAAMAAAD+/w0ABAACAAMAAAD9/w0ABAACAAMAAAD9/wYAAgAAAAUAAAD+/wYABAACAAMAAAD//wYABAACAAMAAAAAAAYABAADAAAAAAAAAAcABAAAAAEAAAAAAAgABAAAAAEAAAAAAAkABAAAAAEAAAAAAAoABAAAAAEAAAAAAAsABAAAAAEAAAAAAAwABAAAAAEAAAD8/wYABAACAAMAAAD8/w0ABAACAAMAAAALAAwAAgAAAAUAAAADAAwAAgAAAAUAAAD+////AgAAAAUAAAAGAP//AgAAAAUAAAAaAAgAAgAFAAAAAAAMAAwAAgAAAAAAAAAKAAAAAgAAAAUAAAAHAA0AAgAGAAcAAAAUAA0AAgAGAAcAAAAYAAwAAgAAAAUAAAAWAA0AAgAAAAEAAAAOAAwAAgAAAAEAAAAJAA0AAgAAAAEAAAAWAAoAAgAAAAEAAAD9/wkABQAAAAAAAAD+/wkAAgAFAAAAAAD8/wkAAgAFAAAAAAD9/wsAAgAAAAUAAAD//wcAAgAKAAcAAAD//wwAAgAKAAcAAAAJAAkAAgAGAAcAAAAQAAsAAgAGAAcAAAABAAIAAgAAAAAAAAAFAAYAAgAAAAAAAAASAAYAAgAAAAAAAAASAAsAAgAAAAAAAAANAAoAAgAAAAAAAAAFAAoAAgAAAAAAAAAEAAoAAgAAAAEAAAAGAAoAAgAAAAEAAAA=")
 tile_set = ExtResource("6_4mrxx")
 
 [node name="player" parent="." instance=ExtResource("4_k0juu")]
@@ -424,5 +436,43 @@ position = Vector2(186, 170)
 [node name="enemy8" parent="." instance=ExtResource("8_4mrxx")]
 position = Vector2(371, 158)
 
+[node name="forbidden_zone" type="Area2D" parent="."]
+
+[node name="first_zone" type="CollisionShape2D" parent="forbidden_zone"]
+position = Vector2(-66, 69)
+shape = SubResource("RectangleShape2D_w7kh3")
+
+[node name="second_zone" type="CollisionShape2D" parent="forbidden_zone"]
+position = Vector2(440, 111)
+shape = SubResource("RectangleShape2D_e3hyu")
+
+[node name="Warning_Message" type="CanvasLayer" parent="."]
+visible = false
+script = SubResource("GDScript_w7kh3")
+
+[node name="Panel" type="Panel" parent="Warning_Message"]
+offset_left = 40.0
+offset_top = 39.0
+offset_right = 326.0
+offset_bottom = 97.0
+
+[node name="Label" type="Label" parent="Warning_Message/Panel"]
+modulate = Color(1, 0.160784, 0.117647, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = -11.5
+offset_right = 128.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Esta zona aun no está disponible."
+
 [connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]
+[connection signal="body_entered" from="forbidden_zone" to="." method="_on_forbidden_zone_body_entered"]
+[connection signal="body_exited" from="forbidden_zone" to="." method="_on_forbidden_zone_body_exited"]

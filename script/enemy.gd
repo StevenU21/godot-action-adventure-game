@@ -7,6 +7,7 @@ var HEALTH = 100
 var PLAYER_IN_ATTACK_ZONE = false
 var CAN_TAKE_DAMAGE = true 
 var IS_DYING := false
+@onready var HEALTH_BAR = $health_bar
 
 func _ready():
 	$AnimatedSprite2D.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
@@ -52,7 +53,7 @@ func deal_with_damage():
 		return
 
 	if PLAYER_IN_ATTACK_ZONE and General.PLAYER_CURRENT_ATTACK and CAN_TAKE_DAMAGE:
-		HEALTH -= 33.33
+		HEALTH -= 30
 		CAN_TAKE_DAMAGE = false
 		$take_damage_cooldown.start()
 		print("slime health =", HEALTH)
@@ -79,11 +80,21 @@ func _on_take_damage_cooldown_timeout() -> void:
 	CAN_TAKE_DAMAGE = true
 	
 func update_health():
-	var health_bar = $health_bar
-	
-	health_bar.value = HEALTH
+	HEALTH_BAR.value = HEALTH
+	update_health_bar_color()
 	
 	if HEALTH >= 100:
-		health_bar.visible = false
+		HEALTH_BAR.visible = false
 	else:
-		health_bar.visible = true
+		HEALTH_BAR.visible = true
+		
+func update_health_bar_color():
+
+	if HEALTH >= 60 and HEALTH <= 100:
+		HEALTH_BAR.modulate = Color("00ff00")
+	elif HEALTH > 30 and HEALTH <= 59:
+		HEALTH_BAR.modulate = Color("ffff00")
+	elif HEALTH >= 0 and HEALTH <= 29:
+		HEALTH_BAR.modulate = Color("ff8000")
+	else:
+		HEALTH_BAR.modulate = Color("ff0000")

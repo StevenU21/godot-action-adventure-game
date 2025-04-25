@@ -7,6 +7,7 @@ var ENEMY_ATTACK_COOLDOWN = true
 var HEALTH = 100
 var PLAYER_ALIVE = true
 var ATTACK_IP = false
+@onready var HEALTH_BAR = $health_bar
 	
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -157,13 +158,24 @@ func current_camera():
 		$cliff_side_camera.enabled = true
 
 func update_health_bar():
-	var health_bar = $health_bar
-	health_bar.value = HEALTH
+	HEALTH_BAR.value = HEALTH
+	update_health_bar_color()
 	
 	if HEALTH >= 100:
-		health_bar.visible = false
+		HEALTH_BAR.visible = false
 	else:
-		health_bar.visible = true	
+		HEALTH_BAR.visible = true	
+		
+func update_health_bar_color():
+
+	if HEALTH >= 75 and HEALTH <= 100:
+		HEALTH_BAR.modulate = Color("00ff00")
+	elif HEALTH > 50 and HEALTH <= 74:
+		HEALTH_BAR.modulate = Color("ffff00")
+	elif HEALTH > 25 and HEALTH <= 49:
+		HEALTH_BAR.modulate = Color("ff8000")
+	else:
+		HEALTH_BAR.modulate = Color("ff0000")
 
 func _on_regin_timer_timeout() -> void:
 	if HEALTH < 100 and HEALTH > 0:
