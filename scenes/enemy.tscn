@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xwavj")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -140,8 +140,9 @@ script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7p1mj")
-animation = &"walk"
-frame_progress = 0.470405
+animation = &"death"
+frame = 4
+frame_progress = 1.0
 offset = Vector2(0, -6)
 
 [node name="detection_area" type="Area2D" parent="."]
@@ -151,13 +152,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 shape = SubResource("CircleShape2D_md0e3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="enemy_collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_4ra3w")
 
 [node name="enemy_hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
+[node name="enemy_hit_area" type="CollisionShape2D" parent="enemy_hitbox"]
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_5uy6h")
 
