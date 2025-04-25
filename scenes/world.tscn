@@ -9,7 +9,7 @@
 [ext_resource type="TileSet" uid="uid://brcjnw58lwpt8" path="res://scenes/ysort.tres" id="6_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://hqkra40ni8tj" path="res://art/tilesets/decor_16x16.png" id="6_i7141"]
 [ext_resource type="PackedScene" uid="uid://dn4twbhrm62vf" path="res://scenes/enemy.tscn" id="8_4mrxx"]
-[ext_resource type="AudioStream" uid="uid://c1fa80pdpgph4" path="res://audio/background/Evil-Bodega-Adam-MacDougall.mp3" id="10_w7kh3"]
+[ext_resource type="AudioStream" uid="uid://c1fa80pdpgph4" path="res://audio/bgm/Evil-Bodega-Adam-MacDougall.mp3" id="10_w7kh3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7r4gi"]
 texture = ExtResource("3_71j4m")

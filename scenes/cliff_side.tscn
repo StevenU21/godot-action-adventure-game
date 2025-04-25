@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://mtlwo81ftccl" path="res://art/objects/objects.png" id="5_ocn37"]
 [ext_resource type="Texture2D" uid="uid://d1drbxtur6n54" path="res://art/objects/chest_01.png" id="6_ocn37"]
 [ext_resource type="PackedScene" uid="uid://clsn745svmq0l" path="res://scenes/player.tscn" id="7_0riok"]
-[ext_resource type="AudioStream" uid="uid://d33wesh7a7gqh" path="res://audio/background/Across-Seas-And-Lands-Asher-Fule.mp3" id="9_71q3n"]
+[ext_resource type="AudioStream" uid="uid://d33wesh7a7gqh" path="res://audio/bgm/Across-Seas-And-Lands-Asher-Fule.mp3" id="9_71q3n"]
 [ext_resource type="PackedScene" uid="uid://dn4twbhrm62vf" path="res://scenes/enemy.tscn" id="10_axhr3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ocn37"]
