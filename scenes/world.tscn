@@ -418,5 +418,11 @@ position = Vector2(94, 237)
 [node name="enemy6" parent="." instance=ExtResource("8_4mrxx")]
 position = Vector2(75, 60)
 
+[node name="enemy7" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(186, 170)
+
+[node name="enemy8" parent="." instance=ExtResource("8_4mrxx")]
+position = Vector2(371, 158)
+
 [connection signal="body_entered" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_entered"]
 [connection signal="body_exited" from="cliffside_transition_point" to="." method="_on_cliffside_transition_point_body_exited"]
