@@ -40,33 +40,33 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		get_tree().reload_current_scene()
 
 func player_movement(_delta):
-	
-	if Input.is_action_pressed("move_right"):
-		CURRENT_DIR = "right"
-		play_animation(1)
-		velocity.x = SPEED
-		velocity.y = 0
-	elif Input.is_action_pressed("move_left"):
-		CURRENT_DIR = "left"
-		play_animation(1)
-		velocity.x = -SPEED
-		velocity.y = 0
-	elif Input.is_action_pressed("move_down"):
-		CURRENT_DIR = "down"
-		play_animation(1)
-		velocity.y = SPEED
-		velocity.x = 0
-	elif Input.is_action_pressed("move_up"):
-		CURRENT_DIR = "up"
-		play_animation(1)
-		velocity.y = -SPEED
-		velocity.x = 0
-	else:
-		play_animation(0)
-		velocity.x = 0
-		velocity.y = 0
+		
+		if Input.is_action_pressed("move_right"):
+			CURRENT_DIR = "right"
+			play_animation(1)
+			velocity.x = SPEED
+			velocity.y = 0
+		elif Input.is_action_pressed("move_left"):
+			CURRENT_DIR = "left"
+			play_animation(1)
+			velocity.x = -SPEED
+			velocity.y = 0
+		elif Input.is_action_pressed("move_down"):
+			CURRENT_DIR = "down"
+			play_animation(1)
+			velocity.y = SPEED
+			velocity.x = 0
+		elif Input.is_action_pressed("move_up"):
+			CURRENT_DIR = "up"
+			play_animation(1)
+			velocity.y = -SPEED
+			velocity.x = 0
+		else:
+			play_animation(0)
+			velocity.x = 0
+			velocity.y = 0
 
-	move_and_slide()
+		move_and_slide()
 	
 func play_animation(movement):
 	var dir = CURRENT_DIR

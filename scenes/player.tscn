@@ -426,13 +426,11 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_lxlsd")
-animation = &"death"
-frame = 2
-frame_progress = 1.0
+animation = &"side_idle"
+frame_progress = 0.370142
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 y_sort_enabled = true
 position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_g2els")
