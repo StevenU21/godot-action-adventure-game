@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/audio/
 RGPGame.exe
 RGPGame.pck
 RGPGame.console.exe

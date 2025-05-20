@@ -11,18 +11,20 @@ config_version=5
 [application]
 
 config/name="ActionAdventureGame"
-run/main_scene="uid://cgjqviyvxrbh2"
+run/main_scene="uid://gvs4c8wfvufe"
 config/features=PackedStringArray("4.4", "Mobile")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-General="*res://script/general.gd"
+General="*res://scripts/general.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/max_fps=60
 
 [input]
 
@@ -65,3 +67,5 @@ special_attack={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
