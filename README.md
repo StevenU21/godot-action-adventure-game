@@ -1,4 +1,4 @@
-﻿# godot-rpg-game
+﻿# godot-action-adventure-game
 
 Este es un juego Zelda-Like de accion-aventura sencillo desarrollado usando [Godot Engine](https://godotengine.org/).
 
