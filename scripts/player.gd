@@ -7,6 +7,7 @@ var ENEMY_ATTACK_COOLDOWN = true
 var ATTACK_IP = false
 
 func _ready():
+	add_to_group("player")
 	$AnimatedSprite2D.play("front_idle")
 	$AnimatedSprite2D.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	update_health_bar()
