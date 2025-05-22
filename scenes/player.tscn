@@ -270,7 +270,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"back_walk",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -347,7 +347,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"front_walk",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -410,7 +410,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"side_walk",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
@@ -426,12 +426,11 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_lxlsd")
-animation = &"side_walk"
-frame_progress = 0.406459
+animation = &"back_walk"
+frame_progress = 0.726179
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-y_sort_enabled = true
 position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_g2els")
 
